@@ -2,7 +2,6 @@ package dkron
 
 import (
 	"embed"
-	"fmt"
 	"html/template"
 	"io"
 	"io/fs"
