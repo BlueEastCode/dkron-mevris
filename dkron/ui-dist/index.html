@@ -112,13 +112,16 @@
             rel="stylesheet"
         />
         <script>window.global = window;</script>
-        <script>window.DKRON_API_URL = {{.DKRON_API_URL}};
-            window.DKRON_LEADER = {{.DKRON_LEADER}};
-            window.DKRON_TOTAL_JOBS = {{.DKRON_TOTAL_JOBS}};
-            window.DKRON_SUCCESSFUL_JOBS = {{.DKRON_SUCCESSFUL_JOBS}};
-            window.DKRON_FAILED_JOBS = {{.DKRON_FAILED_JOBS}};
-            window.DKRON_UNTRIGGERED_JOBS = {{.DKRON_UNTRIGGERED_JOBS}};
-            window.DKRON_ACL_ENABLED = {{.DKRON_ACL_ENABLED}};</script>
+        <script>
+            window.DKRON_API_URL = "http://dkron-orientuser:8Dp<3K604]3Ly6@dkron:8080/v1";
+            window.DKRON_LEADER = "{{.DKRON_LEADER}}";
+            window.DKRON_TOTAL_JOBS = "{{.DKRON_TOTAL_JOBS}}";
+            window.DKRON_SUCCESSFUL_JOBS = "{{.DKRON_SUCCESSFUL_JOBS}}";
+            window.DKRON_FAILED_JOBS = "{{.DKRON_FAILED_JOBS}}";
+            window.DKRON_UNTRIGGERED_JOBS = "{{.DKRON_UNTRIGGERED_JOBS}}";
+            window.DKRON_ACL_ENABLED = "{{.DKRON_ACL_ENABLED}}";
+        </script>
+        
       <script type="module" crossorigin src="./assets/index-a0a8ac74.js"></script>
       <link rel="stylesheet" href="./assets/index-73a69410.css">
     </head>

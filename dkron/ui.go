@@ -81,7 +81,7 @@ func (h *HTTPTransport) UI(r *gin.RouterGroup, aclEnabled bool) {
 				ln = l.Name
 			}
 			ctx.HTML(http.StatusOK, "index.html", gin.H{
-				"DKRON_API_URL":          fmt.Sprintf("../%s", apiPathPrefix),
+				"DKRON_API_URL":          "http://dkron-orientuser:8Dp<3K604]3Ly6@dkron:8080/v1",
 				"DKRON_LEADER":           ln,
 				"DKRON_TOTAL_JOBS":       totalJobs,
 				"DKRON_FAILED_JOBS":      failedJobs,

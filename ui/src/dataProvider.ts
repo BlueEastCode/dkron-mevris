@@ -3,7 +3,7 @@ import jsonServerProvider from 'ra-data-json-server';
 import { stringify } from 'query-string';
 import { DataProvider } from 'react-admin';
 
-export const apiUrl = window.DKRON_API_URL || 'http://localhost:8080/v1'
+export const apiUrl = 'http://dkron-orientuser:8Dp<3K604]3Ly6@dkron:8080/v1'
 
 export const httpClient = (url: String, options: fetchUtils.Options = {}) => {
     if (!options.headers) {
