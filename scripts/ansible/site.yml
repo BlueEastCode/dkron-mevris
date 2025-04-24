@@ -1,54 +1,13 @@
 ---
 #  Install Dkron beta on a clean instance
 
-- hosts: localhost
-  vars:
-    project_id: 904af849-79ff-4847-90f7-dfa02367ae72
-
-  tasks:
-    - equinix.cloud.metal_device:
-        hostname: "{{ item }}"
-        operating_system: ubuntu_22_04
-        plan: c3.small.x86
-        metro: am
-        project_id: "{{ project_id }}"
-        tags:
-          - server
-      loop:
-        - dkron01
-        - dkron02
-        - dkron03
-    
-    # - equinix.cloud.metal_device:
-    #     hostname: dkron04
-    #     operating_system: ubuntu_22_04
-    #     plan: c3.small.x86
-    #     metro: am
-    #     project_id: "{{ project_id }}"
-    #     tags:
-    #       - agent
-
 - hosts: all
-  user: root
+  user: ubuntu
   become: true
   become_method: sudo
 
   vars:
-    version: 4.0.0
-    datadog_api_key: "{{ lookup('ansible.builtin.env', 'DKRON_DD_API_KEY') }}"
-    datadog_checks:
-      openmetrics:
-        init_config:
-        instances:
-          - openmetrics_endpoint: http://localhost:8080/metrics/
-            namespace: "dkron"
-            metrics:
-              - dkron.*
-
-  roles:
-    - role: datadog.datadog
-      become: true
-      tags: datadog
+    version: 4.0.4
 
   tasks:
     - name: Copy package
@@ -116,8 +75,8 @@
         value: "4096 16384 16777216"
       tags: performance
 
-- hosts: tag_server
-  user: root
+- hosts: server
+  user: ubuntu
   become: true
   become_method: sudo
 
@@ -128,10 +87,6 @@
     dkron_server: "true"
 
   tasks:
-    - set_fact:
-        dkron_servers: "{{ groups['tag_server'] | map('extract', hostvars, ['ansible_all_ipv4_addresses', 1]) | list }}"
-      tags: config
-
     - name: configure
       template: src={{ item }}.yml.j2 dest=/etc/dkron/{{ item }}.yml
       loop:
@@ -144,8 +99,8 @@
         enabled: yes
         state: restarted
 
-- hosts: tag_agent
-  user: root
+- hosts: agent
+  user: ubuntu
   become: true
   become_method: sudo
 
